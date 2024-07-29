@@ -81,9 +81,12 @@ function displayErrors(data) {
 };
 
 function displayExeption(data) {
-    let heading = "API Key Status";
-    let results = `<div>Your key is valid until</div>`;
-    results += `<div class="key-status">${data.expiry}</div>`;
+    let heading = `<div class="error-heading">An Exception Occurred</div>`;
+
+    results = `<div>The API returned status code ${data.status_code}</div>`;
+    results += `<div>Error number: <strong>${data.error_no}</strong></div>`;
+    results += `<div>Error text: <strong>${data.error}</strong></div>`;
+
     document.getElementById("resultsModalTitle").innerText = heading;
     document.getElementById("results-content").innerHTML = results;
     resultsModal.show();
