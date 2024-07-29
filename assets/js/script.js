@@ -12,7 +12,8 @@ async function getStatus(e) {
     if (response.ok) {
         displayData(data);
     } else {
-        throw new Error(data.error)
+        displayExeption(data);
+        throw new Error(data.error);
     }
 }
 
@@ -54,7 +55,8 @@ async function postForm(e) {
     if (response.ok) {
         displayErrors(data);
     } else {
-        throw new Error(data.error)
+        displayExeption(data);
+        throw new Error(data.error);
     }
 };
 
@@ -77,3 +79,13 @@ function displayErrors(data) {
     document.getElementById("results-content").innerHTML = results;
     resultsModal.show();
 };
+
+function displayExeption(data) {
+    let heading = "API Key Status";
+    let results = `<div>Your key is valid until</div>`;
+    results += `<div class="key-status">${data.expiry}</div>`;
+    document.getElementById("resultsModalTitle").innerText = heading;
+    document.getElementById("results-content").innerHTML = results;
+    resultsModal.show();
+
+}
